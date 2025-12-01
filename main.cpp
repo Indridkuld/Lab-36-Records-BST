@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string>
 #include "IntBinaryTree.h"
 
@@ -8,15 +9,20 @@ using namespace std;
 int main() {
     IntBinaryTree tree;
 
-    tree.insertNode("ABC123");
-    tree.insertNode("XYZ999");
-    tree.insertNode("HELLO1");
+    ifstream infile("codes.txt");
+    if (!infile) {
+        cerr << "Error opening file." << endl;
+        return 1;
+    }
+    string code;
+    
+    while(infile >> code) {
+        tree.insertNode(code);
+    }
+    infile.close();
 
-    cout << "In-order traversal:\n";
+    cout << "In-order traversal of the binary tree:" << endl;
     tree.displayInOrder();
-
-    cout << "Searching for ABC123: "
-         << (tree.searchNode("ABC123") ? "found\n" : "not found\n");
 
     return 0;
 }
