@@ -6,8 +6,8 @@
 using namespace std;
 
 int main() {
-    
+    IntBinaryTree tree;
 
-    
+
     return 0;
 }

@@ -1,6 +1,9 @@
 // Specification file for the IntBinaryTree class
 #ifndef INTBINARYTREE_H
 #define INTBINARYTREE_H
+#include <string>
+#include <iostream>
+using namespace std;
 
 // The IntBinaryTree class manages a binary tree of integers.
 class IntBinaryTree {
@@ -32,9 +35,9 @@ public:
    ~IntBinaryTree()    { destroySubTree(root); }
 
    // Public interface for inserting, searching, and removing nodes.
-   void insertNode(int);
-   bool searchNode(int);
-   void remove(int);
+   void insertNode(string &);
+   bool searchNode(string &);
+   void remove(string &);
 
    // Public wrappers for tree traversal functions.
    void displayInOrder() const     {  displayInOrder(root); }
@@ -61,12 +64,12 @@ void IntBinaryTree::insert(TreeNode *&nodePtr, TreeNode *&newNode) {
 
 // insertNode creates a new node to hold num as its value,
 // and passes it to the insert function.                  
-void IntBinaryTree::insertNode(int num) {
+void IntBinaryTree::insertNode(string &str) {
    TreeNode *newNode;      // Pointer to a new node.
 
    // Create a new node and store num in it.
    newNode = new TreeNode;
-   newNode->value = num;
+   newNode->value = str;
    newNode->left = newNode->right = nullptr;
    
    // Insert the node.
@@ -89,11 +92,11 @@ void IntBinaryTree::destroySubTree(TreeNode *nodePtr) {
 // searchNode determines if a value is present in  
 // the tree. If so, the function returns true.     
 // Otherwise, it returns false.                    
-bool IntBinaryTree::searchNode(int num) {
+bool IntBinaryTree::searchNode(const string &str) {
    TreeNode *nodePtr = root;
 
    while (nodePtr)    {
-      if (nodePtr->value == num)
+      if (nodePtr->value == str)
          return true;
       else if (num < nodePtr->value)
          nodePtr = nodePtr->left;
